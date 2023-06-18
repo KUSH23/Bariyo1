@@ -29,20 +29,18 @@ class ProductTransDataModel {
   final String itemname;
   final String comments;
   final num quantity;
-  final String discipline;
   final String fromLoc;
   final String toLoc;
   // final String timestamp;
   final DateTime timestamp;
 
-  ProductTransDataModel({required this.uid, required this.itemname, required this.comments, required this.quantity, required this.discipline, required this.fromLoc, required this.toLoc, required this.timestamp});
+  ProductTransDataModel({required this.uid, required this.itemname, required this.comments, required this.quantity, required this.fromLoc, required this.toLoc, required this.timestamp});
 
   factory ProductTransDataModel.fromJson(Map<dynamic, dynamic> json) => ProductTransDataModel(
-    uid: json["uid"],
+    uid: json["tuid"],
     itemname: json["itemname"],
-    quantity: json["quantity"],
+    quantity: json["quantitychange"],
     comments: json["comments"],
-    discipline: json["discipline"],
     fromLoc: json["fromloc"],
     toLoc: json["toloc"],
     // timestamp: json["timestamp"],
@@ -54,7 +52,6 @@ class ProductTransDataModel {
     "itemname": itemname,
     "quantity": quantity,
     "comments": comments,
-    "discipline": discipline,
     "fromLoc": fromLoc,
     "toLoc": toLoc,
     // "timestamp": timestamp,
