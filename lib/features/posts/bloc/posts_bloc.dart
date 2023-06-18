@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:bloc/bloc.dart';
 import 'package:mediafirst/controller/form_controller.dart';
 import 'package:mediafirst/models/home_product.dart';

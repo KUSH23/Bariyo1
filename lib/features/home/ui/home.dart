@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediafirst/constants.dart';
-import 'package:mediafirst/data/cart_data.dart';
-import 'package:mediafirst/features/cart/ui/cart.dart';
 import 'package:mediafirst/features/home/bloc/home_bloc.dart';
 import 'package:mediafirst/features/home/ui/product_tile_widget.dart';
-import 'package:mediafirst/features/wishlist/ui/wishlist.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.homeBloc});

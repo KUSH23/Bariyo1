@@ -10,7 +10,7 @@ DataRow recentFileDataRow({required ProductTransDataModel productDataModel, requ
   String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
   return DataRow(
     color: MaterialStateColor.resolveWith((states) {
-      return productDataModel.quantity! < 0 ? Colors.red : secondaryColor; //make tha magic!
+      return productDataModel.quantity < 0 ? Colors.red : secondaryColor; //make tha magic!
     }),
     cells: [
       DataCell(
@@ -23,19 +23,19 @@ DataRow recentFileDataRow({required ProductTransDataModel productDataModel, requ
             // ),
             CircleAvatar(
               backgroundColor: secondaryColor,
-              child: Text(productDataModel.uid!.toString()),
+              child: Text(productDataModel.uid.toString()),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(productDataModel.itemname!
-                  .substring(0,productDataModel.itemname!.length>25
-                  ?25:productDataModel.itemname!.length)),
+              child: Text(productDataModel.itemname
+                  .substring(0,productDataModel.itemname.length>25
+                  ?25:productDataModel.itemname.length)),
             ),
           ],
         ),
       ),
       DataCell(Text(formattedDate)),
-      DataCell(Text(productDataModel.quantity!.toString()),),
+      DataCell(Text(productDataModel.quantity.toString()),),
       DataCell(IconButton(
         onPressed: (){
           // homeBloc.add(HomeProductCartButtonClickedEvent(addedProduct: productDataModel));
@@ -47,10 +47,10 @@ DataRow recentFileDataRow({required ProductTransDataModel productDataModel, requ
 }
 
 DataRow productFileDataRow({required ProductDataModel productDataModel, required PostsBloc postsBloc}) {
-  String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
+  // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
   return DataRow(
     color: MaterialStateColor.resolveWith((states) {
-      return productDataModel.quantity! < 0 ? Colors.red : secondaryColor; //make tha magic!
+      return productDataModel.quantity< 0 ? Colors.red : secondaryColor; //make tha magic!
     }),
     cells: [
       DataCell(
@@ -63,13 +63,12 @@ DataRow productFileDataRow({required ProductDataModel productDataModel, required
             // ),
             CircleAvatar(
               backgroundColor: secondaryColor,
-              child: Text(productDataModel.uid!.toString()),
+              child: Text(productDataModel.uid.toString()),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(productDataModel.itemname!
-                  .substring(0,productDataModel.itemname!.length>25
-                  ?25:productDataModel.itemname!.length)),
+              child: Text(productDataModel.itemname.substring(0,productDataModel.itemname.length>25
+                  ?25:productDataModel.itemname.length)),
             ),
           ],
         ),
@@ -84,7 +83,7 @@ DataRow productFileDataRow({required ProductDataModel productDataModel, required
       DataCell(
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: Text(productDataModel.quantity!.toString()),
+          child: Text(productDataModel.quantity.toString()),
         ),
       ),
       DataCell(

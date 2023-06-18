@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediafirst/features/home/bloc/home_bloc.dart';
 import 'package:mediafirst/features/home/ui/home.dart';
-import 'package:mediafirst/screens/dashboard/components/recent_files.dart';
 
 import '../../../constants.dart';
-import 'chart.dart';
-import 'storage_info_card.dart';
+
 
 class StorageDetails extends StatefulWidget {
   const StorageDetails({Key? key, required this.homeBloc,})

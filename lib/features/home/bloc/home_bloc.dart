@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:mediafirst/controller/form_controller.dart';
-import 'package:mediafirst/data/cart_data.dart';
-import 'package:mediafirst/data/test_data.dart';
-import 'package:mediafirst/models/home_product.dart';
 import 'package:mediafirst/models/transactionModel.dart';
 import 'package:meta/meta.dart';
 
