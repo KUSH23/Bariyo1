@@ -23,7 +23,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     postsBloc.add(PostsInitialFetchEvent());
     homeBloc.add(HomeInitialEvent());
     super.initState();
@@ -46,9 +45,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   flex: 5,
                   child: Column(
                     children: [
-                      // if(postsBloc.state is PostsAdditionState)
-                      //   CreateFeedback(postsBloc: postsBloc),
-                      // if(postsBloc.state is !PostsAdditionState)
                       MyFiles(postsBloc: postsBloc),
                       const SizedBox(height: defaultPadding),
                       // const RecentFiles(),
