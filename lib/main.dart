@@ -6,7 +6,7 @@ import 'package:mediafirst/controller/MenuAppController.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             create: (context) => MenuAppController(),
           ),
         ],
-        child: MainScreen(),
+        child: const MainScreen(),
       ),
     );
   }

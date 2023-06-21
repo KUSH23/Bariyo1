@@ -6,9 +6,9 @@ import 'package:mediafirst/responsive.dart';
 import 'package:mediafirst/screens/dashboard/components/my_fields.dart';
 import 'package:flutter/material.dart';
 
-import 'components/header.dart';
+import 'Screens/dashboard/components/header.dart';
 
-import 'components/storage_details.dart';
+import 'Screens/dashboard/components/storage_details.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
