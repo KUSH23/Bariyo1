@@ -32,4 +32,5 @@ class PostsTransactionSubmitButtonClickedEvent extends PostsEvent {
   PostsTransactionSubmitButtonClickedEvent({required this.updatedProduct});
 }
 
+class PostsWishlistButtonNavigateEvent extends PostsEvent{}
 

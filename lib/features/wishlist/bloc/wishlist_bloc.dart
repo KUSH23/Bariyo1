@@ -19,6 +19,6 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
 
   FutureOr<void> wishlistProductButtonClickedEvent(
       WishlistProductButtonClickedEvent event, Emitter<WishlistState> emit) {
-    emit(WishlistNavigateState());
+    emit(WishlistLoadingState());
   }
 }

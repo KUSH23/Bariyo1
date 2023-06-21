@@ -28,9 +28,9 @@ class _CartState extends State<Cart> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (widget.wishlistBloc.state is WishlistNavigateState)
+                if (widget.wishlistBloc.state is WishlistLoadingState)
                   Wishlist(wishlistBloc: widget.wishlistBloc),
-                if (widget.wishlistBloc.state is !WishlistNavigateState)
+                if (widget.wishlistBloc.state is !WishlistLoadingState)
                   CreateFeedback(postsBloc: widget.postsBloc),
               ],
             ),

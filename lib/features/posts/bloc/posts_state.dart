@@ -31,3 +31,5 @@ class PostsTransactionFormState extends PostsActionState {
 }
 
 class PostsAdditionState extends PostsActionState {}
+
+class PostsProductItemWishlistedActionState extends PostsActionState {}

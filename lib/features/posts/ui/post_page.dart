@@ -24,7 +24,7 @@ class _PostsPageState extends State<PostsPage> {
       listener: (context, state) {
         if(state is PostsAdditionState || state is PostsUpdateFormState || state is PostsTransactionFormState){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, wishlistBloc:wishlistBloc)));
-        }if(state is WishlistNavigateState){
+        }if(state is PostsProductItemWishlistedActionState){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, wishlistBloc:wishlistBloc)));
         }
         // }else if(state is PostsAdditionErrorState){
