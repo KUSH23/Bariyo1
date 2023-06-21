@@ -151,9 +151,9 @@ class FormController {
       var decodedResponse = jsonDecode(response.body);
       // print(decodedResponse);
       final results = decodedResponse["data"] as List;
-      print(results);
+      // print(results);
       mydata = results.map((json) => ProductTransDataModel.fromJson(json)).toList();
-      print(mydata);
+      // print(mydata);
     } catch(e) {
       print(e.toString());
     }

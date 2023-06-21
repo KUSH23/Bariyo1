@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/features/cart/ui/createfeedback.dart';
+import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
+import 'package:mediafirst/features/wishlist/ui/wishlist.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key, required this.postsBloc});
+  const Cart({super.key, required this.postsBloc, required this.wishlistBloc});
   final PostsBloc postsBloc;
+  final WishlistBloc wishlistBloc;
 
   @override
   State<Cart> createState() => _CartState();
@@ -25,7 +28,10 @@ class _CartState extends State<Cart> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CreateFeedback(postsBloc: widget.postsBloc),
+                if (widget.wishlistBloc.state is WishlistNavigateState)
+                  Wishlist(wishlistBloc: widget.wishlistBloc),
+                if (widget.wishlistBloc.state is !WishlistNavigateState)
+                  CreateFeedback(postsBloc: widget.postsBloc),
               ],
             ),
           )

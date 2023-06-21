@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/features/home/bloc/home_bloc.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
+import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
 import 'package:mediafirst/models/home_product.dart';
 import 'package:mediafirst/models/transactionModel.dart';
 
@@ -46,9 +47,12 @@ DataRow recentFileDataRow({required ProductTransDataModel productDataModel, requ
   );
 }
 
-DataRow productFileDataRow({required ProductDataModel productDataModel, required PostsBloc postsBloc}) {
+DataRow productFileDataRow({required ProductDataModel productDataModel, required PostsBloc postsBloc, required WishlistBloc wishlistBloc}) {
   // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
   return DataRow(
+    onSelectChanged: (value) {
+      wishlistBloc.add(WishlistProductButtonClickedEvent(maProduct: productDataModel));
+    },
     color: MaterialStateColor.resolveWith((states) {
       return productDataModel.quantity< 0 ? Colors.red : secondaryColor; //make tha magic!
     }),

@@ -4,6 +4,7 @@ import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/features/cart/ui/cart.dart';
 import 'package:mediafirst/features/home/ui/product_tile_widget.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
+import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key, required this.postsBloc});
@@ -13,7 +14,7 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-
+  WishlistBloc wishlistBloc = WishlistBloc();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PostsBloc, PostsState>(
@@ -22,7 +23,9 @@ class _PostsPageState extends State<PostsPage> {
       buildWhen: (previous, current) => current is !PostsActionState,
       listener: (context, state) {
         if(state is PostsAdditionState || state is PostsUpdateFormState || state is PostsTransactionFormState){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc)));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, wishlistBloc:wishlistBloc)));
+        }if(state is WishlistNavigateState){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, wishlistBloc:wishlistBloc)));
         }
         // }else if(state is PostsAdditionErrorState){
         //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error!")));
@@ -76,6 +79,7 @@ class _PostsPageState extends State<PostsPage> {
                             rows: List.generate(
                                 successState.products.length,
                                     (index) => productFileDataRow(
+                                        wishlistBloc: wishlistBloc,
                                     postsBloc: widget.postsBloc,
                                     productDataModel: successState.products[index])
                             ),
