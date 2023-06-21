@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mediafirst/main_screen.dart';
+import 'package:mediafirst/screens/main/main_screen.dart';
 import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/controller/MenuAppController.dart';
 import 'package:provider/provider.dart';
