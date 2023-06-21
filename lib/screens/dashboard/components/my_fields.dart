@@ -1,8 +1,6 @@
-import 'package:mediafirst/Screens/feedback_search_page.dart';
-import 'package:mediafirst/features/cart/ui/createfeedback.dart';
+
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/models/MyFiles.dart';
-import 'package:mediafirst/models/home_product.dart';
 import 'package:mediafirst/responsive.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +18,7 @@ class MyFiles extends StatefulWidget {
 class _MyFilesState extends State<MyFiles> {
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    // final Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
