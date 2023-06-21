@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mediafirst/Screens/main/main_screen.dart';
+import 'package:mediafirst/main_screen.dart';
 import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/controller/MenuAppController.dart';
-import 'package:mediafirst/controller/form_controller.dart';
-import 'package:mediafirst/features/cart/ui/createfeedback.dart';
-import 'package:mediafirst/Screens/feedback_search_page.dart';
-import 'package:mediafirst/features/home/ui/home.dart';
-import 'package:mediafirst/features/posts/ui/post_page.dart';
-import 'package:mediafirst/models/form.dart';
-import 'package:mediafirst/models/transactionModel.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
