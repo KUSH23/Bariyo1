@@ -47,7 +47,7 @@ DataRow recentFileDataRow({required ProductTransDataModel productDataModel, requ
   );
 }
 
-DataRow productFileDataRow({required ProductDataModel productDataModel, required PostsBloc postsBloc, required WishlistBloc wishlistBloc}) {
+DataRow productFileDataRow({required ProductDataModel productDataModel, required PostsBloc postsBloc}) {
   // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
   return DataRow(
     onSelectChanged: (value) {

@@ -49,7 +49,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       MyFiles(postsBloc: postsBloc),
                       const SizedBox(height: defaultPadding),
                       // const RecentFiles(),
-                      PostsPage(postsBloc: postsBloc),
+                      PostsPage(postsBloc: postsBloc, homeBloc: homeBloc),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) StorageDetails(homeBloc: homeBloc),

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/features/cart/ui/cart.dart';
+import 'package:mediafirst/features/home/bloc/home_bloc.dart';
 import 'package:mediafirst/features/home/ui/product_tile_widget.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
 import 'package:mediafirst/screens/dashboard/components/header.dart';
 
 class PostsPage extends StatefulWidget {
-  const PostsPage({super.key, required this.postsBloc});
+  const PostsPage({super.key, required this.postsBloc, required this.homeBloc});
   final PostsBloc postsBloc;
+  final HomeBloc homeBloc;
   @override
   State<PostsPage> createState() => _PostsPageState();
 }
@@ -24,7 +26,7 @@ class _PostsPageState extends State<PostsPage> {
       buildWhen: (previous, current) => current is !PostsActionState,
       listener: (context, state) {
         if(state is PostsAdditionState || state is PostsUpdateFormState || state is PostsTransactionFormState || state is PostsProductDataFormState){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, wishlistBloc:wishlistBloc)));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart(postsBloc: widget.postsBloc, homeBloc:widget.homeBloc)));
         }
         // }else if(state is PostsAdditionErrorState){
         //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error!")));
@@ -35,9 +37,13 @@ class _PostsPageState extends State<PostsPage> {
           case PostsLoadingState:
             return Column(
               children: [
-                Text(
-                  "Loading...",
-                  style: Theme.of(context).textTheme.titleMedium,
+                Row(
+                  children: [
+                    Text(
+                      "Loading...",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
                 ),
                 SearchField(postsBloc: widget.postsBloc),
                 const Center(
@@ -57,7 +63,7 @@ class _PostsPageState extends State<PostsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Recent Files",
+                    "Files",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SearchField(postsBloc: widget.postsBloc),
@@ -88,7 +94,6 @@ class _PostsPageState extends State<PostsPage> {
                             rows: List.generate(
                                 successState.products.length,
                                     (index) => productFileDataRow(
-                                        wishlistBloc: wishlistBloc,
                                     postsBloc: widget.postsBloc,
                                     productDataModel: successState.products[index])
                             ),

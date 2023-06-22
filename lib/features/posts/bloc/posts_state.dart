@@ -36,5 +36,6 @@ class PostsProductItemWishlistedActionState extends PostsActionState {}
 
 class PostsProductDataFormState extends PostsActionState {
   ProductDataModel product;
-  PostsProductDataFormState({required this.product});
+  List<ProductTransDataModel> tproducts;
+  PostsProductDataFormState({required this.product, required this.tproducts});
 }

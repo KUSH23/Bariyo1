@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
             return Container(
-              padding: EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.all(defaultPadding),
               decoration: const BoxDecoration(
                 color: secondaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),

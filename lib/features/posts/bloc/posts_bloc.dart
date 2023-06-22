@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:mediafirst/controller/form_controller.dart';
 import 'package:mediafirst/models/home_product.dart';
+import 'package:mediafirst/models/transactionModel.dart';
 import 'package:meta/meta.dart';
 
 part 'posts_event.dart';
@@ -84,9 +85,11 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   }
 
   FutureOr<void> postsProductButtonClickedEvent(
-      PostsProductButtonClickedEvent event, Emitter<PostsState> emit) {
+      PostsProductButtonClickedEvent event, Emitter<PostsState> emit) async{
+    // emit(PostsLoadingState());
     print("navigate");
-    emit(PostsProductDataFormState(product:event.maProduct));
+    List<ProductTransDataModel> mydata = await FormController().getProductsTransList(event.maProduct.uid.toString());
+    emit(PostsProductDataFormState(product:event.maProduct, tproducts: mydata));
   }
 
   FutureOr<void> postsSearchButtonClickedEvent(
