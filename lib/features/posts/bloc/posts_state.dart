@@ -33,3 +33,8 @@ class PostsTransactionFormState extends PostsActionState {
 class PostsAdditionState extends PostsActionState {}
 
 class PostsProductItemWishlistedActionState extends PostsActionState {}
+
+class PostsProductDataFormState extends PostsActionState {
+  ProductDataModel product;
+  PostsProductDataFormState({required this.product});
+}

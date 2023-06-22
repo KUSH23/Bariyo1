@@ -51,9 +51,7 @@ DataRow productFileDataRow({required ProductDataModel productDataModel, required
   // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(productDataModel.timestamp);
   return DataRow(
     onSelectChanged: (value) {
-      // wishlistBloc.emit(WishlistNavigateState());
-      postsBloc.add(PostsWishlistButtonNavigateEvent());
-      wishlistBloc.add(WishlistProductButtonClickedEvent(maProduct: productDataModel));
+      postsBloc.add(PostsProductButtonClickedEvent(maProduct: productDataModel));
     },
     color: MaterialStateColor.resolveWith((states) {
       return productDataModel.quantity< 0 ? Colors.red : secondaryColor; //make tha magic!

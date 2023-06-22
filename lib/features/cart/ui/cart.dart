@@ -3,7 +3,6 @@ import 'package:mediafirst/constants.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/features/cart/ui/createfeedback.dart';
 import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
-import 'package:mediafirst/features/wishlist/ui/wishlist.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key, required this.postsBloc, required this.wishlistBloc});
@@ -28,10 +27,7 @@ class _CartState extends State<Cart> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (widget.wishlistBloc.state is WishlistLoadingState)
-                  Wishlist(wishlistBloc: widget.wishlistBloc),
-                if (widget.wishlistBloc.state is !WishlistLoadingState)
-                  CreateFeedback(postsBloc: widget.postsBloc),
+                CreateFeedback(postsBloc: widget.postsBloc),
               ],
             ),
           )

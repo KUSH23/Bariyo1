@@ -23,7 +23,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
 
     on<PostsAddButtonClickedEvent>(postsAddButtonClickedEvent);
 
-    on<PostsWishlistButtonNavigateEvent>(postsWishlistButtonNavigateEvent);
+    on<PostsProductButtonClickedEvent>(postsProductButtonClickedEvent);
   }
 
   Future<FutureOr<void>> postsInitialFetchEvent(
@@ -81,9 +81,9 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       PostsTransactionSubmitButtonClickedEvent event, Emitter<PostsState> emit) {
   }
 
-  FutureOr<void> postsWishlistButtonNavigateEvent(
-      PostsWishlistButtonNavigateEvent event, Emitter<PostsState> emit) {
+  FutureOr<void> postsProductButtonClickedEvent(
+      PostsProductButtonClickedEvent event, Emitter<PostsState> emit) {
     print("navigate");
-    emit(PostsProductItemWishlistedActionState());
+    emit(PostsProductDataFormState(product:event.maProduct));
   }
 }

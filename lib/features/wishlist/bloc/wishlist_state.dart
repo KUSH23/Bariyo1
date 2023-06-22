@@ -9,4 +9,9 @@ class WishlistInitial extends WishlistState {}
 
 class WishlistLoadingState extends WishlistState {}
 
+class WishlistLoadedSuccessState extends WishlistState {
+  ProductDataModel maProduct;
+  WishlistLoadedSuccessState({required this.maProduct});
+}
+
 class WishlistNavigateState extends WishlistActionState {}
