@@ -5,6 +5,11 @@ abstract class PostsEvent {}
 
 class PostsInitialFetchEvent extends PostsEvent {}
 
+class PostsSearchButtonClickedEvent extends PostsEvent{
+  final String searchText;
+  PostsSearchButtonClickedEvent({required this.searchText});
+}
+
 class PostsProductUpdateButtonClickedEvent extends PostsEvent{
   final ProductDataModel maProduct;
   PostsProductUpdateButtonClickedEvent({required this.maProduct});

@@ -24,6 +24,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<PostsAddButtonClickedEvent>(postsAddButtonClickedEvent);
 
     on<PostsProductButtonClickedEvent>(postsProductButtonClickedEvent);
+
+    on<PostsSearchButtonClickedEvent>(postsSearchButtonClickedEvent);
   }
 
   Future<FutureOr<void>> postsInitialFetchEvent(
@@ -85,5 +87,16 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       PostsProductButtonClickedEvent event, Emitter<PostsState> emit) {
     print("navigate");
     emit(PostsProductDataFormState(product:event.maProduct));
+  }
+
+  FutureOr<void> postsSearchButtonClickedEvent(
+      PostsSearchButtonClickedEvent event, Emitter<PostsState> emit) async {
+    emit(PostsLoadingState());
+
+    List<ProductDataModel> mydata = await FormController().getProductsList("");
+    List<ProductDataModel> filteredFeedbackItems = mydata
+        .where((item) => item.itemname!.toLowerCase().contains(event.searchText.toLowerCase()))
+        .toList();
+    emit(PostsLoadedSuccessState(products: filteredFeedbackItems));
   }
 }

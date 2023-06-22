@@ -5,6 +5,7 @@ import 'package:mediafirst/features/cart/ui/cart.dart';
 import 'package:mediafirst/features/home/ui/product_tile_widget.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/features/wishlist/bloc/wishlist_bloc.dart';
+import 'package:mediafirst/screens/dashboard/components/header.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key, required this.postsBloc});
@@ -32,8 +33,17 @@ class _PostsPageState extends State<PostsPage> {
       builder: (context, state) {
         switch (state.runtimeType) {
           case PostsLoadingState:
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Column(
+              children: [
+                Text(
+                  "Loading...",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                SearchField(postsBloc: widget.postsBloc),
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ],
             );
           case PostsLoadedSuccessState:
             final successState = state as PostsLoadedSuccessState;
@@ -50,6 +60,7 @@ class _PostsPageState extends State<PostsPage> {
                     "Recent Files",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
+                  SearchField(postsBloc: widget.postsBloc),
                   SizedBox(
                     width: double.infinity,
                     child: SingleChildScrollView(
