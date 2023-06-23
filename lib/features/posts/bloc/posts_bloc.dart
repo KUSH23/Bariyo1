@@ -81,7 +81,13 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   }
 
   FutureOr<void> postsTransactionSubmitButtonClickedEvent(
-      PostsTransactionSubmitButtonClickedEvent event, Emitter<PostsState> emit) {
+      PostsTransactionSubmitButtonClickedEvent event, Emitter<PostsState> emit) async{
+    bool success = await FormController().transactionProduct(product : event.transProductModel);
+    if(success){
+      emit(PostsAdditionSuccessState());
+    }else {
+      emit(PostsAdditionErrorState());
+    }
   }
 
   FutureOr<void> postsProductButtonClickedEvent(

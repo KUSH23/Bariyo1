@@ -33,8 +33,8 @@ class PostsUpdateSubmitButtonClickedEvent extends PostsEvent {
 }
 
 class PostsTransactionSubmitButtonClickedEvent extends PostsEvent {
-  final ProductDataModel updatedProduct;
-  PostsTransactionSubmitButtonClickedEvent({required this.updatedProduct});
+  final ProductTransDataModel transProductModel;
+  PostsTransactionSubmitButtonClickedEvent({required this.transProductModel});
 }
 
 class PostsProductButtonClickedEvent extends PostsEvent{

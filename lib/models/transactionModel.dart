@@ -26,6 +26,7 @@ class TransactionModel {
 
 class ProductTransDataModel {
   final num uid;
+  final num itemUid;
   final String itemname;
   final String comments;
   final num quantity;
@@ -34,7 +35,7 @@ class ProductTransDataModel {
   // final String timestamp;
   final DateTime timestamp;
 
-  ProductTransDataModel({required this.uid, required this.itemname, required this.comments, required this.quantity, required this.fromLoc, required this.toLoc, required this.timestamp});
+  ProductTransDataModel({required this.uid, required this.itemUid, required this.itemname, required this.comments, required this.quantity, required this.fromLoc, required this.toLoc, required this.timestamp});
 
   factory ProductTransDataModel.fromJson(Map<dynamic, dynamic> json) => ProductTransDataModel(
     uid: json["tuid"],
@@ -45,10 +46,12 @@ class ProductTransDataModel {
     toLoc: json["toloc"],
     // timestamp: json["timestamp"],
     timestamp: DateTime.parse(json["timestamp"]),
+    itemUid: json["itemuid"],
   );
 
   Map<String, dynamic> toJson() => {
     "uid": uid,
+    "itemuid": itemUid,
     "itemname": itemname,
     "quantity": quantity,
     "comments": comments,

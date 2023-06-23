@@ -6,6 +6,7 @@ import 'package:mediafirst/features/home/bloc/home_bloc.dart';
 import 'package:mediafirst/features/home/ui/product_tile_widget.dart';
 import 'package:mediafirst/features/posts/bloc/posts_bloc.dart';
 import 'package:mediafirst/models/home_product.dart';
+import 'package:mediafirst/models/transactionModel.dart';
 
 class CreateFeedback extends StatefulWidget {
   const CreateFeedback({Key? key, required this.postsBloc, required this.homeBloc}) : super(key: key);
@@ -33,6 +34,10 @@ class _CreateFeedbackState extends State<CreateFeedback> {
   final TextEditingController equipController = TextEditingController();
   final TextEditingController projController = TextEditingController();
   final TextEditingController storeController = TextEditingController();
+
+  final TextEditingController _fromLocController = TextEditingController();
+  final TextEditingController _toLocController = TextEditingController();
+  final TextEditingController _commentsController = TextEditingController();
 
   // Method to Submit Feedback and save it in Google Sheets
   Future<void> _submitForm() async {
@@ -73,6 +78,24 @@ class _CreateFeedbackState extends State<CreateFeedback> {
     }
   }
 
+  Future<void> _submitTransactionForm() async {
+    if (_formKey.currentState!.validate()) {
+      // If the form is valid, proceed.
+      ProductTransDataModel tProduct = ProductTransDataModel(
+          itemname: _itemController.text,
+          quantity: int.parse(_qtyController.text),
+          uid: int.parse(_uidController.text),
+          timestamp: DateTime.now(),
+          comments: _commentsController.text,
+          fromLoc: _fromLocController.text,
+          toLoc: _toLocController.text,
+          itemUid: 1,
+      );
+
+      widget.postsBloc.add(PostsTransactionSubmitButtonClickedEvent(transProductModel:tProduct));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PostsBloc, PostsState>(
@@ -81,7 +104,7 @@ class _CreateFeedbackState extends State<CreateFeedback> {
       buildWhen: (previous, current) => current is !PostsActionState,
       listener: (context, state) {
         if(state is PostsAdditionSuccessState){
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Item Added!")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success!")));
         widget.postsBloc.add(PostsInitialFetchEvent());
         Navigator.of(context).pop();
         }else if(state is PostsAdditionErrorState){
@@ -450,7 +473,7 @@ class _CreateFeedbackState extends State<CreateFeedback> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              _submitUpdateForm();
+                              _submitTransactionForm();
                             },
                             child: const Text('Create Transaction'),
                           ),

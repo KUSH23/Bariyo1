@@ -53,10 +53,10 @@ class FormController {
       if (response.statusCode == 302) {
         var url = response.headers['location'];
         await http.get(Uri.parse(url!)).then((response) {
-          (print(convert.jsonDecode(response.body)['status'] + "111"));
+          (print(convert.jsonDecode(response.body)['status'] + "addProduct1"));
         });
       } else {
-        (print(convert.jsonDecode(response.body)['status']+"222"));
+        (print(convert.jsonDecode(response.body)['status']+"addProduct2"));
       }
 
       if(convert.jsonDecode(response.body)['status']=="SUCCESS"){
@@ -82,10 +82,39 @@ class FormController {
       if (response.statusCode == 302) {
         var url = response.headers['location'];
         await http.get(Uri.parse(url!)).then((response) {
-          (print(convert.jsonDecode(response.body)['status'] + "111"));
+          (print(convert.jsonDecode(response.body)['status'] + "updateProduct1"));
         });
       } else {
-        (print(convert.jsonDecode(response.body)['status']+"222"));
+        (print(convert.jsonDecode(response.body)['status']+"updateProduct2"));
+      }
+
+      if(convert.jsonDecode(response.body)['status']=="SUCCESS"){
+        return true;
+      }
+      // print(results);
+    } catch(e) {
+      print(e.toString());
+      return false;
+    }
+    return false;
+  }
+
+  Future<bool> transactionProduct({required ProductTransDataModel product}) async {
+    var url = "$URL?sheet=transactions";
+    var client = http.Client();
+    try{
+      var response = await client.post(Uri.parse(url),
+          // headers: {
+          //   'Content-Type': 'application/json; charset=utf-8',
+          // },
+          body: convert.jsonEncode(product));
+      if (response.statusCode == 302) {
+        var url = response.headers['location'];
+        await http.get(Uri.parse(url!)).then((response) {
+          (print(convert.jsonDecode(response.body)['status'] + "transactionProduct1"));
+        });
+      } else {
+        (print(convert.jsonDecode(response.body)['status']+"transactionProduct2"));
       }
 
       if(convert.jsonDecode(response.body)['status']=="SUCCESS"){
