@@ -46,20 +46,20 @@ class FormController {
     var client = http.Client();
     try{
       var response = await client.post(Uri.parse(url),
-          // headers: {
-          //   'Content-Type': 'application/json; charset=utf-8',
-          // },
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
           body: convert.jsonEncode(product));
       if (response.statusCode == 302) {
-        var url = response.headers['location'];
-        await http.get(Uri.parse(url!)).then((response) {
-          (print(convert.jsonDecode(response.body)['status'] + "addProduct1"));
-        });
+        var url = response.headers["location"];
+        response = await http.get(Uri.parse(url!));
+        (print(convert.jsonDecode(response.body)["status"] + "addProduct1"));
+
       } else {
-        (print(convert.jsonDecode(response.body)['status']+"addProduct2"));
+        (print(convert.jsonDecode(response.body)["status"]+"addProduct2"));
       }
 
-      if(convert.jsonDecode(response.body)['status']=="SUCCESS"){
+      if(convert.jsonDecode(response.body)["status"]=="SUCCESS"){
         return true;
       }
       // print(results);
@@ -80,12 +80,12 @@ class FormController {
           // },
           body: convert.jsonEncode(product));
       if (response.statusCode == 302) {
-        var url = response.headers['location'];
-        await http.get(Uri.parse(url!)).then((response) {
-          (print(convert.jsonDecode(response.body)['status'] + "updateProduct1"));
-        });
+        var url = response.headers["location"];
+        response = await http.get(Uri.parse(url!));
+        (print(convert.jsonDecode(response.body)["status"] + "addProduct1"));
+
       } else {
-        (print(convert.jsonDecode(response.body)['status']+"updateProduct2"));
+        (print(convert.jsonDecode(response.body)["status"]+"addProduct2"));
       }
 
       if(convert.jsonDecode(response.body)['status']=="SUCCESS"){
@@ -109,12 +109,12 @@ class FormController {
           // },
           body: convert.jsonEncode(product));
       if (response.statusCode == 302) {
-        var url = response.headers['location'];
-        await http.get(Uri.parse(url!)).then((response) {
-          (print(convert.jsonDecode(response.body)['status'] + "transactionProduct1"));
-        });
+        var url = response.headers["location"];
+        response = await http.get(Uri.parse(url!));
+        (print(convert.jsonDecode(response.body)["status"] + "addProduct1"));
+
       } else {
-        (print(convert.jsonDecode(response.body)['status']+"transactionProduct2"));
+        (print(convert.jsonDecode(response.body)["status"]+"addProduct2"));
       }
 
       if(convert.jsonDecode(response.body)['status']=="SUCCESS"){

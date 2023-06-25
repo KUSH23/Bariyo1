@@ -51,7 +51,7 @@ class _CreateFeedbackState extends State<CreateFeedback> {
           equipment: equipController.text,
           project: projController.text,
           store: storeController.text,
-          uid: int.parse(_uidController.text),
+          uid: 0,
           timestamp: DateTime.now()
       );
 
@@ -89,7 +89,7 @@ class _CreateFeedbackState extends State<CreateFeedback> {
           comments: _commentsController.text,
           fromLoc: _fromLocController.text,
           toLoc: _toLocController.text,
-          itemUid: 1,
+          itemUid: 0,
       );
 
       widget.postsBloc.add(PostsTransactionSubmitButtonClickedEvent(transProductModel:tProduct));

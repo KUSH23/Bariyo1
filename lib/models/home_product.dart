@@ -28,9 +28,9 @@ class ProductDataModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
+    "uid": uid.toString(),
     "itemname": itemname,
-    "quantity": quantity,
+    "quantity": quantity.toString(),
     "oem": oem,
     "equipment": equipment,
     "discipline": discipline,
