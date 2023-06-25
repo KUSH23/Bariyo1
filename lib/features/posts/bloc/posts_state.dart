@@ -20,6 +20,8 @@ class PostsAdditionSuccessState extends PostsActionState {}
 
 class PostsAdditionErrorState extends PostsActionState {}
 
+class PostsTransactionAdditionSuccessState extends PostsActionState {}
+
 class PostsUpdateFormState extends PostsActionState {
   ProductDataModel product;
   PostsUpdateFormState({required this.product});
@@ -31,8 +33,6 @@ class PostsTransactionFormState extends PostsActionState {
 }
 
 class PostsAdditionState extends PostsActionState {}
-
-class PostsProductItemWishlistedActionState extends PostsActionState {}
 
 class PostsProductDataFormState extends PostsActionState {
   ProductDataModel product;

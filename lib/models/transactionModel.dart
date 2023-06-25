@@ -50,13 +50,13 @@ class ProductTransDataModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
+    "tuid": uid,
     "itemuid": itemUid,
     "itemname": itemname,
-    "quantity": quantity,
+    "quantitychange": quantity,
     "comments": comments,
-    "fromLoc": fromLoc,
-    "toLoc": toLoc,
+    "fromloc": fromLoc,
+    "toloc": toLoc,
     // "timestamp": timestamp,
     "timestamp": timestamp.toIso8601String(),
   };

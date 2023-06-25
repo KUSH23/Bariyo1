@@ -84,12 +84,12 @@ class _CreateFeedbackState extends State<CreateFeedback> {
       ProductTransDataModel tProduct = ProductTransDataModel(
           itemname: _itemController.text,
           quantity: int.parse(_qtyController.text),
-          uid: int.parse(_uidController.text),
+          uid: 0,
           timestamp: DateTime.now(),
           comments: _commentsController.text,
           fromLoc: _fromLocController.text,
           toLoc: _toLocController.text,
-          itemUid: 0,
+          itemUid: int.parse(_uidController.text),
       );
 
       widget.postsBloc.add(PostsTransactionSubmitButtonClickedEvent(transProductModel:tProduct));
@@ -104,11 +104,16 @@ class _CreateFeedbackState extends State<CreateFeedback> {
       buildWhen: (previous, current) => current is !PostsActionState,
       listener: (context, state) {
         if(state is PostsAdditionSuccessState){
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success!")));
-        widget.postsBloc.add(PostsInitialFetchEvent());
-        Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success!")));
+          widget.postsBloc.add(PostsInitialFetchEvent());
+          Navigator.of(context).pop();
+        }else if(state is PostsTransactionAdditionSuccessState){
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success!")));
+          widget.homeBloc.add(HomeInitialEvent());
+          widget.postsBloc.add(PostsInitialFetchEvent());
+          Navigator.of(context).pop();
         }else if(state is PostsAdditionErrorState){
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error!")));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error!")));
         }
       },
       builder: (context, state) {
@@ -434,20 +439,6 @@ class _CreateFeedbackState extends State<CreateFeedback> {
                                 _oemController.text,
                                 style: const TextStyle(fontStyle: FontStyle.italic),
                                 ),
-                                TextFormField(
-                                  // initialValue: widget.product.quantity.toString(),
-                                  controller: _qtyController,
-                                  keyboardType: TextInputType.number,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Enter Valid Quantity';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: const InputDecoration(
-                                    labelText: 'Quantity',
-                                  ),
-                                ),
                                 Text(
                                   _discController.text,
                                   style: const TextStyle(fontStyle: FontStyle.italic),
@@ -463,6 +454,62 @@ class _CreateFeedbackState extends State<CreateFeedback> {
                                 Text(
                                   storeController.text,
                                   style: const TextStyle(fontStyle: FontStyle.italic),
+                                ),
+                                TextFormField(
+                                // initialValue: widget.product.quantity.toString(),
+                                  controller: _qtyController,
+                                  keyboardType: TextInputType.number,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                    return 'Enter Valid Quantity';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                  labelText: 'Quantity',
+                                  ),
+                                ),
+                                TextFormField(
+                                  // initialValue: widget.product.project,
+                                  controller: _fromLocController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Enter Valid data';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'From Location',
+                                  ),
+                                ),
+                                TextFormField(
+                                  // initialValue: widget.product.project,
+                                  controller: _toLocController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Enter Valid data';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'To Location',
+                                  ),
+                                ),
+                                TextFormField(
+                                  // initialValue: widget.product.project,
+                                  controller: _commentsController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Enter Valid Comments';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'Comments',
+                                  ),
                                 ),
                               ],
                             ),
